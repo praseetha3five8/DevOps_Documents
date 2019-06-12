@@ -1,0 +1,7 @@
+mail not sending to admin's while sending from mc.
+
+1. code = src/jobs/job_process_tmpmail.php
+2. select * from bhaaraath.adda_tmp_mail where tmpmail_to='mc-GokulamS@apartmentadda.com' and adda_tmp_mail_systimestamp>'2019-01-16 00:00:00' limit 10;
+
+3. 1st check from_mailid is registered or not? Only registered mailid can send mail to "mc".
+4. tmpmail_processed=0 or tmpmail_processed=1  --- means not send

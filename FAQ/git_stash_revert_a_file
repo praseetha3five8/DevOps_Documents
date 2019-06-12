@@ -1,0 +1,3 @@
+https://stackoverflow.com/questions/15264553/how-to-unstash-only-certain-files
+
+git checkout stash@{0} -- <filename>

@@ -1,0 +1,41 @@
+1. check "process_biometric_data_mysql.py" workers running or not (MUMNODE7 machine)
+2. if not running run manually.
+
+3. verify "/var/log/biometric.log" log if any device is blocking the entry.
+
+4. As per src/iclock/cdata.php
+	As per the above code if $device_sn_no is not registered,if loop wil go to break;
+	so the the worker will exit; after running the worker process will die (So process won't list)
+	if any device is not registered register the ADDA then only it will work.
+
+
+
+
+=============================================================================================
+05-02-2019.
+
+Issue:
+Biometric attendence report is not comming properlly.
+
+
+Resolved:
+
+1. server disk space is became 100% , so process_biometric_data_mysql.py -- not able to write the LAST_FETCH_FILE to "last_biomertic_fetch_index_mysql.txt".
+
+2. checked the file "last_biomertic_fetch_index_mysql.txt" ---- when it got modified last .
+
+3. select * from bhaaraath.adda_biometric_attendence_raw_data where biometric_attendence_checkin_time >= '2019-02-04 22:05:00' and biometric_attendence_checkin_time <= '2019-02-04 22:15:00' order by biometric_attendence_id desc limit 3500
+
+4. Executed the query and took "biometric_attendence_id" for that perticular time period updated in "last_biomertic_fetch_index_mysql.txt".
+
+
+
+log was
+-------
+25065, 140181358282560 --- 2019-02-05 12:43:32,714 - biometric - DEBUG - Skipping.... SN_NO: OIN7030057031402211 , Badge_NO: ME0006 , IN_OUT_TIME: 2017-09-17 14:42:12 , CHECKIN_INTERVAL: 30
+
+and it started from the starting 2017 Checkin time.
+
+
+=======================================================================================================
+

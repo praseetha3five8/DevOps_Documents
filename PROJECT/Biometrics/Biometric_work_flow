@@ -1,0 +1,61 @@
+1. biometric_config.conf
+2. biometric_enable_disable_user.py
+3. process_biometric_data
+4. process_biometric_data_mysql
+
+
+
+Work flow
+---------
+
+biometric_enable_disable_user.py    
+------ 
+config.conf
+DB : shahenshah
+DB : bhaaraath
+
+download_s3_files.py; download_s3.conf
+Redis connection
+
+1. code start from the function "process_enable_disable_user" -- code will connect to redis and mysql
+2. call "get_db_data" function --> get data from "shahenshah.connect_biometric_facility_booking"
+
+
+    q = "SELECT biometric_facility_booking_id, biometric_facility_booking_apt_id, biometric_facility_booking_owner_id, biometric_facility_booking_action, biometric_facility_booking_user_type, biometric_facility_booking_action_status FROM shahenshah.connect_biometric_facility_booking WHERE ((biometric_facility_booking_action_start_time> DATE_SUB(NOW(), INTERVAL 5 MINUTE) and biometric_facility_booking_action_status=-1 and biometric_facility_booking_action_start_time< NOW()) or (biometric_facility_booking_action_end_time>DATE_SUB(NOW(), INTERVAL 5 MINUTE) and biometric_facility_booking_action_status=1 and biometric_facility_booking_action_end_time< NOW()) or (biometric_facility_booking_action_status=2))"
+
+
+
+3. return the q output to main code (process_enable_disable_user) 
+
+4. if booking_action==disable --- make as disable otherwise enable.
+
+
+5. check get_badge_id==0  -->  if zero -->  call "get_badge_id" function -->  from "bhaaraath" DB --> return q value (ao_badge) to the main code (process_enable_disable_user)
+
+    q = "SELECT sao_badge FROM {}.adda_apt_owner WHERE ao_apt_id='{}' AND ao_owner_id='{}' LIMIT 1".format(APT_DB, booking_apt_id, booking_owner_id)
+
+
+6. If ao_badge != "null"  --> continue
+
+
+7. (i) booking status == -1 --> (Not processed booking)
+	it will call "get_device_sn"  and return device_sn
+	(i) if booking_user_type == 0 
+	        q = "select biometric_device_sn from bhaaraath.adda_owner_biometric_devices where biometric_device_apt_id='5'"
+	(ii) if booking_user_type != 0
+	        q = "select biometric_device_sn from bhaaraath.adda_biometric_devices where biometric_device_apt_id='5	'"
+	
+	- using device_sn number create redis queue = bio_(device_sn)
+	- change booking_status =1 ; if booking_action = disable make it enable.
+	- call " update_data " function 
+	 q = "UPDATE  {}.connect_biometric_facility_booking set biometric_facility_booking_action='{}', biometric_facility_booking_action_status='{}' WHERE biometric_facility_booking_id='{}'".format(CONNECT_DB, booking_action, booking_status, booking_id)
+
+
+   (ii) booking status == 1 --> (Processed booking)
+	- same step as booking_status = -1 
+	- set booking_status = 2
+
+   (iii) booking status == 2 --> booking status = 3 --> (delete processed booking)
+
+	- booking_status = 3
+	- not saving in redis queue updating DB.

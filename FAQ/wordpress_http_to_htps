@@ -1,0 +1,34 @@
+1. move http to https wordpress
+----------------------------
+
+1. create ssl certificate and loadbalancer .
+
+2. Install plugins 
+cloudflare-flexible-ssl      aand
+really-simple-ssl
+
+3. and activate both
+
+4. change wordpress address and site address. wp-admin>> settings >> save changes
+
+or in DB
+ 
+update wp_options SET option_value = replace(option_value, 'https://faq.adda.io', 'http://faq.adda.io') WHERE option_name = 'home' OR option_name = 'siteurl';
+
+
+5. vi wp-config.php
+add below lines
+-----------------------
+//Begin Really Simple SSL Load balancing fix
+$server_opts = array("HTTP_CLOUDFRONT_FORWARDED_PROTO" => "https", "HTTP_CF_VISITOR"=>"https", "HTTP_X_FORWARDED_PROTO"=>"https", "HTTP_X_FORWARDED_SSL"=>"on", "HTTP_X_PROTO"=>"SSL", "HTTP_X_FORWARDED_SSL"=>"1");
+foreach( $server_opts as $option => $value ) {
+ if ((isset($_ENV["HTTPS"]) && ( "on" == $_ENV["HTTPS"] )) || (isset( $_SERVER[ $option ] ) && ( strpos( $_SERVER[ $option ], $value ) !== false )) ) {
+  $_SERVER[ "HTTPS" ] = "on";
+  break;
+ }
+}
+//END Really Simple SS
+--------------------------
+
+
+Note : No htaccess file

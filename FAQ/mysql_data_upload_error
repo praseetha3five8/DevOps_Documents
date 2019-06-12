@@ -1,0 +1,7 @@
+ERROR 2006 (HY000) at line 10119: MySQL server has gone away
+
+while uploading data got above error.
+Solution: 
+make
+max_allowed_packet=64M
+in mysql configuration

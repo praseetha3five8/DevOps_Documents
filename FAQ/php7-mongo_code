@@ -1,0 +1,58 @@
+1. Install composer
+2. composer require "mongodb/mongodb=^1.0.0"
+3. php-mongo code
+----------------
+<?php
+require 'vendor/autoload.php'; // include Composer's autoloader
+
+$client = new MongoDB\Client("mongodb://myUserAdmin:abc123@127.0.0.1:27017");
+$collection = $client->demo->beers;
+
+$result = $collection->insertOne( [ 'name' => 'Hinterland', 'brewery' => 'BrewDog' ] );
+
+echo "Inserted with Object ID '{$result->getInsertedId()}'";
+?>
+--------------------
+<?php
+require 'vendor/autoload.php'; // include Composer's autoloader
+
+function connect_mongo()
+{
+    $client = new MongoDB\Client("mongodb://myUserAdmin:abc123@127.0.0.1:27017");
+    return $client;
+}
+
+$current_dt = date('Y-m-d H:i:s');
+echo "Start process*******************{$current_dt}*********************\n";
+$mongo_conn = connect_mongo();
+if (!$mongo_conn->connected) {
+    echo "Unable to connect to mongoDB\n";
+    exit;
+}
+else{
+	echo "Connected Successfully";
+}
+$date = new DateTime($current_dt);
+$date->modify('-15 day');
+$dt = strtotime($date->format('Y-m-d H:i:s'));
+
+?>
+-----------------------------------------------------
+
+
+
+Check mongodb running or not  -- /etc/init.d/mongodb status    (Running in mongodb/thanishka)
+
+mongo -u addamongo -p sharpscroll_1005 mongo.apartmentadda.com:27017/adda     (To connect)
+
+https://stackoverflow.com/questions/5091624/is-mongodb-running
+
+------------------------------------------------------
+
+!defined("MONGO_CONNECT_DSN") ? define("MONGO_CONNECT_DSN", 'mongodb://addamongo:sharpscroll_1005@mongo.apartmentadda.com:27017') : null;
+!defined("NOTIFICATION_MONGO_DB_NAME") ? define("NOTIFICATION_MONGO_DB_NAME", 'adda') : null;
+!defined("NOTIFICATION_MONGO_COLLECTION_NAME") ? define("NOTIFICATION_MONGO_COLLECTION_NAME", 'notifications') : null;
+
+=================================================
+
+

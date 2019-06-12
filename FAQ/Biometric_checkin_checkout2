@@ -1,0 +1,23 @@
+
+
+bio metric checkin and checkout for biometric (cluhouse device)
+-------------------------------
+
+
+1. dna>>rumple>>login as support>> loginto adda> ADDA Security >> Report >> click on Club house Usage report
+
+2.  
+
+
+
+
+
+
+
+
+------------------------
+select * from bhaaraath.adda_biometric_attendence_raw_data where (biometric_attendence_device_sn='BJ2C183760307') and (biometric_attendence_apt_staff_id='750853') and biometric_attendence_checkin_time >'2019-02-21 00:00:00' ;
+
+i. active time checkin and checkout coming as 0 (in param1 column)
+ii. deactive time checkin and checkout coming as 25 (in param1 colum)
+--------------------------

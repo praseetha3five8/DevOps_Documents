@@ -1,0 +1,34 @@
+
+publicPages.php
+
+                writes_log_data('/tmp/logout_version_error.log', "This device source device. " . $source_device . "\n");
+                writes_log_data('/tmp/logout_version_error.log', "This device version code. " . $verCode . "\n");
+                writes_log_data('/tmp/logout_version_error.log', "This device owner_id and apt_id. " . $session_owner_id . " & " . $session_apt_id . "\n");
+                writes_log_data('/tmp/logout_version_error.log', date("Y-m-d H:i:s"));
+                $IP=getUserIpAddr();
+                writes_log_data('/tmp/logout_version_error.log', "User Real IP - " . $IP . " \n" );
+                writes_log_data('/tmp/logout_version_error.log', "========End===========");
+                return $json->getJson();
+
+
+
+
+actin_looksup.php
+
+function writes_log_data($log_file, $log_data) {
+    file_put_contents($log_file, $log_data. "\n", FILE_APPEND);
+}
+
+function getUserIpAddr(){
+    if(!empty($_SERVER['HTTP_CLIENT_IP'])){
+        //ip from share internet
+        $ip = $_SERVER['HTTP_CLIENT_IP'];
+    }elseif(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
+        //ip pass from proxy
+        $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    }else{
+        $ip = $_SERVER['REMOTE_ADDR'];
+    }
+    return $ip;
+}
+

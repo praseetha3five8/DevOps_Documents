@@ -1,0 +1,2 @@
+To change time stamp to IN
+ln -sf /usr/share/zoneinfo/Asia/Kolkata /etc/localtime

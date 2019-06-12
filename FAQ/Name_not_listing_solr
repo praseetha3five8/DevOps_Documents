@@ -1,0 +1,14 @@
+1. login to MUMNODE7
+2. Check solr workers is running or not. (ps -aux | grep java)
+3. Restart the worker (sh /home/ubuntu/solr-crons/delta-import_new.sh    ;  sh /home/ubuntu/solr-crons/start_solr.sh)
+
+If still not listing name in solr.
+
+4. cd /home/ubuntu/solr-5.2.1/server/solr/apartment_search_new/conf
+5. run t.sh (after editing the apt_id of missing name)
+eg: curl -u admin:8aMd~6em42bs65h "http://localhost:6600/solr/apartment_search_new/select?q=apt_id:119086&wt=json"
+
+6. "apt_approved":1  should be 1; if -1 ADDA not registered ; Edit in the DB.
+
+ select * from gatekeeper.adda_apt where apt_id='73579' limit 2;
+

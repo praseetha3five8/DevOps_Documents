@@ -1,0 +1,81 @@
+select * from bhaaraath.adda_rosslare_devices where 1 =1
+
+/* 2:41:11 PM localhost adda_db1 */ INSERT INTO adda_rosslare_devices (`rosslare_devices_id`, `rosslare_devices_site_code`, `rosslare_devices_terminal_id`, `rosslare_devices_create_date`, `adda_rosslare_devices_systimestamp`, `rosslare_devices_apt_id`) VALUES (NULL, '0000110154 ', '1', '2019-05-15', CURRENT_TIMESTAMP, '110154 ');
+
+
+Add Device Serial Number in external_biometric.php  $biometric_vendor_mapping
+
+Device Serial Numbers
+----------
+AEWU182560099
+AEWU182560188
+--------
+API Details.
+------------
+URL: http://apartmentadda.com/external/external_biometric.php?SN=<DEVICE SN NO>&table=<ATTLOG>&Stamp=<int>&authkey=<authkey>
+attendance raw data: separated by tab.
+authkey=3116a20f0be0e5f2d6f2616ba6444052
+table=ATTLOG
+SN=device sn no
+Stamp=numeric biometric device unique number
+-------------
+
+attendance raw data: separated by tab  will be like (2019RRRR	2019-05-23 14:12:34	1	1	0	0	0)
+
+
+entries will be in bhaaraath.adda_biometric_attendence_raw_data   
+select * from bhaaraath.adda_biometric_attendence_raw_data where biometric_attendence_device_sn="AEWU182560188" order by biometric_attendence_checkin_time desc limit 10;
+
+
+select * from shahenshah.connect_rosslare where rosslare_site_code='0000110154' limit 100
+=======================================
+
+Files 1st hit external_biometric.php  --- this will point cdata.php
+
+==============================================
+RFID report in Admin portal (working in DB Woods CHs. Ltd. ADDA)
+
+1. under Gatekeer - reports go to Vehicle RFID Tag Swipe Log
+
+2. code -- attendance_manager_vehicle_history_report.php
+
+3. action_gatekeeper.php  -- will execute the query and print in the UI (get_rfid_checkin).
+select * from {$database_connect}.connect_rosslare where rosslare_site_code in ({$site_code}) and rosslare_inout_time >= '{$from}' and rosslare_inout_time <= '{$to}' order by rosslare_inout_time ");
+
+4. vehicle details will get from (get_parking_vehicles)
+select flat_block,flat_aptno,parking_slot_rfid,parking_slot_vehicle_no,parking_slot_vehicle_model,parking_slot_vehicle_type from {$apt_database}.adda_parking_allotment, {$apt_database}.adda_flat_owner where parking_slot_apt_id = {$apt_id} and parking_slot_flat_id = flat_id 
+
+
+For Rossalre Card Reader
+--------------------------
+
+Live URL
+https://apartmentadda.com/external/rosslare_pingback.php
+
+Array
+                (
+                    [srno] => 405963
+                    [empcode] => 0007
+                    [datetime] => 27/12/2017_12:51:20
+                    [terminalid] => 1
+                    [sitecode] => 00001234
+                    [iostatus] => 0
+                )
+[srno] => 405963 Unique ID from database   (srno)
+[empcode] => 0007  Employee Code           (rfid)
+[datetime] => 27/12/2017_12:51:20  DateTime (inout_time)
+[terminalid] => 1 Machine ID      (terminaid)
+[sitecode] => 00001234  Site Code (Site code will be diff from client to client)
+[iostatus] => 0 (0 for IN and 1 for OUT)
+
+
+
+For Biometric Attendance Reader
+-------------------------------
+https://apartmentadda.com/external/external_biometric.php?SN=<DEVICE SN NO>&table=<ATTLOG>&Stamp=<int>&authkey=<authkey>
+attendance raw data: separated by tab.
+authkey=3116a20f0be0e5f2d6f2616ba6444052
+table=OPERLOG/ATTLOG
+SN=device sn no
+Stamp=numeric biometric device unique number.
+

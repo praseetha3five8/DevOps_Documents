@@ -1,0 +1,13 @@
+https://httpd.apache.org/docs/current/mod/mod_log_config.html
+https://www.loggly.com/ultimate-guide/apache-logging-basics/
+https://www.finalanalytics.com/blog/configure-apache-access-logs-ubuntu
+https://www.tecmint.com/set-limits-on-user-processes-using-ulimit-in-linux/
+
+
+
+Adding PID in access log.
+
+vi /etc/apache2/apache.config
+
+eg:
+LogFormat "%h %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\" %{ms}T %p %{Host}i %{pid}P"

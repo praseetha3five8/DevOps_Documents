@@ -1,0 +1,22 @@
+sudo apt update
+/Library/Java/JavaVirtualMachines/openjdk-12.0.1.jdk/Contents/Home
+wget -O - https://download.newrelic.com/548C16BF.gpg | sudo apt-key add -
+sudo sh -c 'echo "deb http://apt.newrelic.com/debian/ newrelic non-free" \
+> /etc/apt/sources.list.d/newrelic.list'
+cat /etc/apt/sources.list.d/newrelic.list 
+sudo apt-get update
+sudo nano /etc/apt/sources.list.d/newrelic.list 
+sudo rm /etc/apt/sources.list.d/newrelic.list 
+php -b
+php -v
+sudo apt-key list
+sudo apt-key del 548C16BF
+wget -O - https://download.newrelic.com/548C16BF.gpg | sudo apt-key add -
+sudo sh -c 'echo "deb http://apt.newrelic.com/debian/ newrelic non-free" \
+> /etc/apt/sources.list.d/newrelic.list'
+sudo apt update 
+sudo apt-get install newrelic-php5
+sudo /etc/init.d/apache2 restart 
+sudo /etc/init.d/nginx restart 
+sudo service php-fpm restart
+

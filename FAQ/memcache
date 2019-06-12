@@ -1,0 +1,94 @@
+MEMCAHE 
+------------
+
+connect -- from prod or node server
+telnet sessionelasticcache.bq9spq.cfg.aps1.cache.amazonaws.com 11211
+
+
+get the key 
+----------
+get KEYNAME
+eg: get 6f157d08859d84863c9e2dce430ca175_844086     (KEY authkey_ownerid)
+--------
+
+delete the key
+--------------
+delete KEYNAME
+eg: delete 6f157d08859d84863c9e2dce430ca175_844086
+--------------
+===========================================================================================================
+PHP code
+
+$rkey = $auth_key . "_" . $owner_id;
+        $memcache = new Memcache;
+        $memcache->connect(ELASTIC_CACHE_URL, ELASTIC_CACHE_PORT);
+        $memcache->delete($rkey);
+        $memcache->close();
+
+
+if ($memcache) {
+                $rkey = $auth_key . "_" . $owner_id;
+                $memcache->set($rkey, $session_json);
+            }
+
+============================================================================================================
+
+https://www.journaldev.com/16/memcached-telnet-commands-example
+telnet localhost 11111
+
+To store data in Memcached server with telnet:
+
+set KEY META_DATA EXPIRY_TIME LENGTH_IN_BYTES
+
+To retrieve data from Memcached through telnet:
+
+get KEY
+
+To overwrite the existing key:
+
+replace KEY META_DATA EXPIRY_TIME LENGTH_IN_BYTES
+
+To delete the key:
+delete KEY
+
+To get the server statistics:
+
+stats
+stats items
+stats slabs
+
+To clear the cache data:
+
+flush_all
+
+To quit the telnet session:
+
+quit
+
+Memcached Server Telnet Example
+
+
+$ telnet localhost 11111
+Trying ::1...
+Connected to localhost.
+Escape character is '^]'.
+set Test 0 100 10
+JournalDev
+STORED
+get Test
+VALUE Test 0 10
+JournalDev
+END
+replace Test 0 100 4
+Temp
+STORED
+get Test
+VALUE Test 0 4
+Temp
+END
+stats items
+STAT items:1:number 1
+STAT items:1:age 19
+STAT items:1:evicted 0
+
+

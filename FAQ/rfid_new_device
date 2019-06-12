@@ -1,0 +1,12 @@
+RFID -- Adding New Device.
+---------------------------
+
+--> where rosslare_devices_id,rosslare_devices_terminal_id will change, rosslare_devices_terminal_id will be the apt-id of the apartment and rosslare_devices_id will be 10 digit number (zeros+apt-id)
+
+#INSERT INTO adda_rosslare_devices (`rosslare_devices_id`, `rosslare_devices_site_code`, `rosslare_devices_terminal_id`, `rosslare_devices_create_date`, `adda_rosslare_devices_systimestamp`, `rosslare_devices_apt_id`) VALUES (NULL, '0000110154 ', '1', '2019-05-15', CURRENT_TIMESTAMP, '110154 ');
+
+
+files.
+---------
+action_gatekeeper.php
+attendance_manager_vehicle_history_report.php

@@ -1,0 +1,39 @@
+user = mailuser
+hosts = mail2
+dbname = mail3
+password = *.C7.6>DcD-53MO
+table = alias
+select_field = goto
+where_field = address
+additional_conditions = and active = '1'
+#query = SELECT goto FROM alias WHERE address='%s' AND active = '1'
+
+
+
+
+
+user = mailuser
+password = *.C7.6>DcD-53MO
+hosts = mail2
+dbname = mail3
+table = sender_access
+select_field = email, status
+where_field = status=' REJECT'
+additional_conditions = and active = '1'
+#query = SELECT username, CONCAT(domain,'/',maildir) FROM mailbox WHERE username='%s' AND active = '1'
+
+
+
+mysql -u mailuser -h mail2 -p
+
+
+*.C7.6>DcD-53MO
+
+
+
+UPDATE `alias` SET `domain` = `apartmentadda_test.com' [WHERE condition];
+UPDATE `alias` SET `domain` = `apartmentadda_test.com` where destination = "ashok@apartmentadda.com" limit 1;
+
+
+mail2 mysql root password
+update user set authentication_string=PASSWORD("MY@dda$mail$erver") where User='root';

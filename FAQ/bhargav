@@ -1,0 +1,75 @@
+ 2004  cd public/
+ 2005  ls
+ 2006  cd ..
+ 2007  composer install
+ 2008  ls
+ 2009  cd ..
+ 2010  sudo rm -rf indiaapi
+ 2011  cd
+ 2012  sudo git remote add origin git@github.com:apartmentadda/iot-api.git
+ 2013  git clone git@github.com:apartmentadda/iot-api.git
+ 2014  git clone https://github.com/apartmentadda/iot-api.git
+ 2015  cat ~/.ssh/id_rsa.pub 
+ 2016  sudo git clone git@github.com:apartmentadda/iot-api.git
+ 2017  rm -rf iot-api
+ 2018  sudo rm -rf iot-api
+ 2019  ls -al
+ 2020  sudo chown $USER:$USER ~
+ 2021  sudo git clone git@github.com:apartmentadda/iot-api.git
+ 2022  git clone git@github.com:apartmentadda/iot-api.git
+ 2023  sudo chown -R $USER:$USER ~/.ssh/
+ 2024  git clone git@github.com:apartmentadda/iot-api.git
+ 2025  cd /var/www/
+ 2026  ls
+ 2027  cd adda
+ 2028  less /etc/nginx/sites-available/adda.io.conf
+ 2029  cat /etc/nginx/sites-available/default* | grep listen
+ 2030  clear
+ 2031  cd
+ 2032  sudo git clone git@github.com:apartmentadda/iot-api.git
+ 2033  ls
+ 2034  ls iot-api/
+ 2035  cd iot-api/
+ 2036  ls -al
+ 2037  cd ..
+ 2038  ls
+ 2039  sudo chown -R $USER:$USER iot-api
+ 2040  sudo ln -s /home/ubuntu/iot-api /var/www/indiaapi
+ 2041  cd /var/www/indiaapi
+ 2042  ls
+ 2043  cd /etc/nginx/
+ 2044  ls
+ 2045  cd sites-available
+ 2046  ls
+ 2047  php -v
+ 2048  cd 
+ 2049  cd iot-api/
+ 2050  composer install
+ 2051  sudo chown -R $USER:$USER ~/.composer
+ 2052  composer install
+ 2053  npm
+ 2054  sudo apt install npm
+ 2055  npm install
+ 2056  pwd
+ 2057  npm config set registry="http://registry.npmjs.org/"
+ 2058  npm install
+ 2059  sudo apt install node
+ 2060  sudo apt install nodejs
+ 2061  node -v
+ 2062  sudo apt install node
+ 2063  which node
+ 2064  which nodejs 
+ 2065  sudo ln -s /usr/bin/nodejs /usr/bin/node
+ 2066  npm install
+ 2067  echo $?
+ 2068  npm run docs
+ 2069  less public/docs/index.html 
+ 2070  ls
+ 2071  cp .env.example .env
+ 2072  nano .env
+ 2073  sudo chown -R $USER:$USER ~/iot-api
+ 2074  nano .env
+ 2075  sudo chown $USER:$USER ~/.nano_history 
+ 2076  nano .env
+ 2077  history 
+

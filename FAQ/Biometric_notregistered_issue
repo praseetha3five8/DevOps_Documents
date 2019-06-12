@@ -1,0 +1,15 @@
+Not registered.
+------------
+process_biometric_data_mysql.py       --- code will check the apt_id is null/empty if it empty , in log it will print as Not registered and block there it self.
+
+eg: SELECT biometric_device_apt_id, biometric_device_location FROM bhaaraath.adda_biometric_devices WHERE biometric_device_sn = '17511AB50055' limit 3
+
+NOTE:in log if it blocked then biometric_device_sn can replace with blocking one
+--------------------
+
+
+FOUND ISSUE :
+@line 57 
+q = "SELECT biometric_device_apt_id, biometric_device_location FROM biometric_device_apt_id WHERE biometric_device_sn = '%s'" % str(
+            device_sn_no)
+In the above query biometric_device_apt_id table not exist so not going further

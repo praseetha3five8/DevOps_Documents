@@ -1,0 +1,53 @@
+301 redirection only if domain matches (eg: in.adda.io)
+if any request_uri is there should not redirect (eg: in.adda.io/*)
+
+
+Add below lines in the nginx configuration.
+
+---------------
+      if ($request_uri !~ "^(.*)/(.*)\w+$")
+      {
+        return 301 https://global.adda.io$request_uri;
+      }
+
+-------------------
+
+
+
+
+
+
+
+curl output:
+-----------
+
+adda@adda-Vostro-3446:~$ curl -I in.adda.io/TEST/TEST_CHECK/test.php
+HTTP/1.1 301 Moved Permanently
+Content-Type: text/html; charset=iso-8859-1
+Date: Fri, 22 Mar 2019 09:47:19 GMT
+Location: https://in.adda.io/TEST/TEST_CHECK/test.php
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 1; mode=block
+Connection: keep-alive
+
+adda@adda-Vostro-3446:~$ curl -I in.adda.io
+HTTP/1.1 301 Moved Permanently
+Content-Length: 178
+Content-Type: text/html
+Date: Fri, 22 Mar 2019 09:47:26 GMT
+Location: https://global.adda.io/
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 1; mode=block
+Connection: keep-alive
+
+adda@adda-Vostro-3446:~$ curl -I in.adda.io/TETS
+HTTP/1.1 301 Moved Permanently
+Content-Type: text/html; charset=iso-8859-1
+Date: Fri, 22 Mar 2019 09:47:29 GMT
+Location: https://in.adda.io/TETS?apt=TETS&page=
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 1; mode=block
+Connection: keep-alive

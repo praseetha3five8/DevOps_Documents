@@ -1,0 +1,47 @@
+URL: https://www.youtube.com/watch?v=Xy_108rNaKs    (watch in google)
+URL: https://docs.aws.amazon.com/cli/latest/reference/glacier/index.html
+URL: www.jingwangian.com/blog/2017/12/12/aws-cli-for-glacier/
+
+================================================================================================================================
+1. get the JOBID and archive list(Download the vault inventory.)
+
+To create a inventory retrieval policy
+>>aws glacier initiate-job --account-id - --vault-name myvault --job-parameters "{\"Type\":\"inventory-retrieval\"}"
+
+To get the job retrival status (completed or not)
+>>aws glacier describe-job --account-id - --vault-name myvault --job-id 5dILAW_BVXMu2Q-LdsBvhQTrMV71RHB4Tam--2s1Llvp4pnsaxIz8WtZOFfXwl7BxdG7ZZMC3KJrfPxlFPQnihgtvjWp
+
+
+To get list of archives
+>>aws glacier get-job-output --account-id - --vault-name myvault --job-id 5dILAW_BVXMu2Q-LdsBvhQTrMV71RHB4Tam--2s1Llvp4pnsaxIz8WtZOFfXwl7BxdG7ZZMC3KJrfPxlFPQnihgtvjWp outputfilename
+
+-------------------------
+
+2. Initiate archive retrieval
+
+To initiate a retrive (archive Id will get from the above get-job-output command in outputfilename)
+>>aws glacier initiate-job --account-id - --vault-name myvault --job-parameters "{\"Type\": \"archive-retrieval\",\"ArchiveId\":\"GPuRPtZGYyYmlHZFP1aZ6K7uNZUc4KwXkqA4kmtK-is_rnl_HYdaYWJ1ou52v10p4UuVqVZg3BoeQH_oPecF4BSuPN-WfwgFn2B1E7dt1PANEhBstXzQNhkP9QoSmfkQFcv8yWACHw\"}"
+
+To know the retrival status of archive (here JobId should be the archive jobid which will get from the above initiate-job command)
+>>aws glacier describe-job --account-id - --vault-name myvault --job-id i1AdZJ2yC3ie7b63UqvesvUWAGWQN-WEA6VKIAPXKJgpVv0Zao072eD1MlOngYXAiROlWuzQ3sMcHMS2bLXe3wVZbiRZ
+
+------------------------------
+
+3. Download the archive 
+
+(Data will save in the text.php file -- we need to remember the file extention and file name -- amazon never save file name aand extension)
+>>aws glacier get-job-output --account-id - --vault-name myvault --job-id "zbxcm3Z_3z5UkoroF7SuZKrxgGoDc3RloGduS7Eg-RO47Yc6FxsdGBgf_Q2DK5Ejh18CnTS5XW4_XqlNHS61dsO4CnMW" text.php
+
+
+
+=================================================================================================================================
+
+List all the valut.
+>>aws glacier list-vaults --account-id -
+
+To discribe the vault (no. of archive)
+>>aws glacier describe-vault --vault-name myvault --account-id -
+
+To upload data to aws-glacier
+>>aws glacier upload-archive --account-id - --vault-name my-vault --body archive.zip
+

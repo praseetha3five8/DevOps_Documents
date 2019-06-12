@@ -1,0 +1,69 @@
+server configuration.
+----------------------
+
+step1:
+------
+
+- create a domain in godady, yahoo ...etc.
+- aws create a Route53 -> hostedZone
+- copy the NS to godaddy or yahoo .
+
+
+
+step 2:
+--------
+
+- create SSL Certificate
+- AWS SSL Certificate generation
+
+AWS >> certificate manager >> Request a certificte >> Request a public certificate >> Enter the domain name (*.domainname) >>
+select validation method >> choose DNS >> Review >> Validate (click the arrow then click on add to Route53 -- this will create a CNAME entry under domai in the Route53).
+
+
+step3:
+--------
+- create Instances
+- Create A clasic or Application loadbalancer >> Choose SSL certificate (ACM) >> 
+Helth Check - Ping Target TCP:80; port config { 80 (HTTP) forwarding to 80 (HTTP) } and {443 (HTTPS, IAM Certificate: addaio-2018-2019) forwarding to 80 (HTTP)}
+
+Note :80 or 443 port will hit loadbalancer -- but it will convert to 80 and server will hit 80.
+
+
+step4:
+--------
+- select the DNS from load balancer
+- Route53 >> select the hostname >> Create Record >> type domain >> A record >> Alias (yes) >> choose the load balance DNS.
+
+
+
+step5:  [reff:https://www.digitalocean.com/community/tutorials/how-to-set-up-nginx-server-blocks-virtual-hosts-on-ubuntu-16-04]
+-------
+- login to the server.
+- Install nginx
+- sudo cp /etc/nginx/sites-available/example.com /etc/nginx/sites-available/test.com    [ take the copy of existing config under sites-available folder and edit servername document root lisen port will be 80 here ]
+- sudo ln -s /etc/nginx/sites-available/example.com /etc/nginx/sites-enabled/           [create soft link for sites-available to sites-enabled]
+- sudo nginx -t     [verify syntax error]
+- sudo systemctl restart nginx
+
+
+
+step6:[https://www.digitalocean.com/community/tutorials/how-to-set-up-apache-virtual-hosts-on-ubuntu-16-04]
+-----
+- NOTE: same copy of sites-available and edit the config file here ... while running "a2ensite" it will create link inside sites-enabled
+config file name and domain name should same
+- sudo cp /etc/apache2/sites-available/example.com.conf /etc/apache2/sites-available/test.com.conf
+- sudo a2ensite example.com.conf
+- sudo systemctl restart apache2
+
+
+
+step7:[reff: https://stackoverflow.com/questions/17174626/elb-and-apache-configuration-for-https-website]
+-----
+- Redirect http request to https
+- Edit below line under apache2 config file
+    RewriteEngine On
+    RewriteCond %{HTTP:X-Forwarded-Proto} !https
+    RewriteCond %{HTTP_USER_AGENT} !^ELB-HealthChecker
+    RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R,L]
+
+=====================================================================================

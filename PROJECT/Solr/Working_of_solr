@@ -1,0 +1,31 @@
+
+Reff: https://www.digitalocean.com/community/tutorials/how-to-install-solr-5-2-1-on-ubuntu-14-04e
+
+1. solr is using for temp. chache (store the query as a index)
+2. Installed on MUMNODE7 machine under /home/ubuntu/ 
+
+3. cd /home/ubuntu/solr-5.2.1/server/solr/apartment_search_new
+
+i. core.properties ---- name=apartment_search_new
+			config=solrconfig.xml
+			schema=schema.xml
+			dataDir=/var/solrdata/apartment_search_new
+
+	{ this file will navigate to which config file should use (apartment_search_new) where the indexes should save (/var/solrdata/apartment_search_new) ... etc}
+
+ii. conf/dataimportconfig.xml  ------ all the select query will be here.
+
+iii. conf/solrconfig.xml    ------  this file contain /dataimport ; /select ; /query ; /get ; /update
+
+eg:
+  <requestHandler name="/dataimport" class="solr.DataImportHandler">
+    <lst name="defaults">
+      <str name="config">dataimportconfig.xml</str>
+    </lst>
+  </requestHandler>
+
+iv. to call the solr URL : curl -u admin:8aMd~6em42bs65h "http://localhost:6600/solr/apartment_search_new/select?q=apt_id:119086&wt=json"
+
+
+
+

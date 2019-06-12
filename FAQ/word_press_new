@@ -1,0 +1,90 @@
+Wordpress Complete Install
+----------------------------
+
+1. Download wordpress latest version
+https://wordpress.org/download/
+
+2. unzip the folder.
+
+3. move to corresponding folder (eg: /var/www/faq/)
+
+4. create a database for wordpress
+
+5. create a copy of wp-config.php and edit (mysql username, password, hostname and Database)
+
+6. for any plugin download the plugin and unzip and move to wp-content/plugin folder.
+
+7. for changing permalink
+
+wordpress premalink redirection issue fixed.
+1. changed permalink to post name in UI (admin user)
+2. added .htaccess file in document root (/var/www/faq_adda_io/
+3. added AllowOverride All in faq.apache config file
+4. restared the apache.
+
+
+-------------------------------------------------------------------------------------------
+
+plugins 
+health-check.1.2.5.zip -- for checking the health of wordpress
+akismet                -- antivirous plugin
+wordpress-importer.0.6.4.zip -- wordpress import plugin
+
+
+
+
+
+
+
+===================================================================================
+
+UPDATE wp_options SET option_value = replace(option_value, 'http://faq.apartmentadda.com', 'http://faq.adda.io') WHERE option_name = 'home' OR option_name = 'siteurl';
+
+
+
+UPDATE wp_posts SET post_content = replace(post_content, 'http://faq.apartmentadda.com', 'http://faq.adda.io');
+
+
+UPDATE wp_postmeta SET meta_value = replace(meta_value,'http://faq.apartmentadda.com','http://faq.adda.io');
+
+UPDATE wp_usermeta SET meta_value = replace(meta_value, 'http://faq.apartmentadda.com','http://faq.adda.io');
+
+UPDATE wp_links SET link_url = replace(link_url, 'http://faq.apartmentadda.com','http://faq.adda.io');
+
+UPDATE wp_comments SET comment_content = replace(comment_content , 'http://faq.apartmentadda.com','http://faq.adda.io');
+
+
+UPDATE wp_posts SET post_content = replace(post_content, 'http://faq.apartmentadda.com','http://faq.adda.io');
+UPDATE wp_links SET link_image = replace(link_image, 'http://faq.apartmentadda.com','http://faq.adda.io');
+UPDATE wp_posts SET guid = replace(guid, 'http://faq.apartmentadda.com','http://faq.adda.io');
+
+-----------------------
+UPDATE `wp_users` SET `user_pass` = MD5( 'adda1234' ) WHERE `wp_users`.`user_login` = "praseetha";
+---------------------------------------
+UPDATE `wp_users` SET `user_pass` = MD5( 'adda1234' ) WHERE `wp_users`.`user_login` = "Paul";
+-----------------------------------
+UPDATE `wp_users` SET `user_pass` = MD5( 'adda1234' ) WHERE `wp_users`.`user_login` = "admin";
+
+Reff :
+https://www.a2hosting.in/kb/installable-applications/optimization-and-configuration/wordpress2/resetting-the-wordpress-administrator-password
+https://blog.templatetoaster.com/update-old-urls-in-database/
+https://websiteforstudents.com/upgrade-wordpress-via-ssh-on-ubuntu-16-04-lts/
+https://blog.templatetoaster.com/migrate-wordpress-website/
+---------------------------------------------------------------------
+
+
+APIs
+
+http://faq.adda.io/index.php/wp-json/wp/v2/posts?filter[s]=how-to-add-emergency-contacts-to-the-directory/
+http://faq.adda.io/index.php/wp-json/wp/v2/users
+
+
+
+
+
+
+
+
+
+==================================================
+

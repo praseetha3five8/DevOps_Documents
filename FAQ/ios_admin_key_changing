@@ -1,0 +1,16 @@
+IOS --- certificate update. 
+
+
+For (admin app)
+---------------
+
+1. key path will save in  (eg: PROD_ADMIN_APP_APNS_CERT=/var/keys/admin_cert_prod.pem)
+vi pyrouter/adda_notification.conf
+
+
+
+2. convert .p12 (ios developer will give with password) to .pem
+openssl pkcs12 -in apns-dev-cert.p12 -out apns-dev-cert.pem -nodes -clcerts
+reff: https://stackoverflow.com/questions/10412603/convert-p12-file-to-pem-using-terminal-app-in-mac-no-such-file-or-directory
+
+3. save the .pem in mumprod7 and mumnod7 (under /var/keys/)

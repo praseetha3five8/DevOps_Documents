@@ -1,0 +1,37 @@
+addaio_blog 
+gatekeeper_blog
+gatekeeper_crime
+aimmblog
+faq_adda_io_test
+adda_blog_new
+gatekeeper_blog
+addaio_blog
+adda_blog_new
+adda_blog_new
+faq_adda_io
+faq
+
+mysql -h mirrordb1.apartmentadda.com -u dejavulaalee -psharpscroll_1005
+
+ mysql  -h adda-live-2018-11-29.c0tcqk9nihjz.ap-south-1.rds.amazonaws.com -u dejavulaalee -psharpscroll_1005
+
+
+mysql  -h adda-live-2018-11-29.c0tcqk9nihjz.ap-south-1.rds.amazonaws.com -u dejavulaalee -psharpscroll_1005
+
+
+
+php7.conf:	Alias /blog /var/www/adda/src/wordpress
+addaone.io.conf:	Alias /blog /var/www/adda/src/wordpress
+india.adda.io.conf:	Alias /blog /var/www/adda/src/wordpress
+addagatekeeper.conf:	Alias /blog /var/www/blogs/gatekeeper_blog
+000-default.conf:	Alias /blog /var/www/adda/src/wordpress
+000-default-ssl.conf:	Alias /blog /var/www/adda/src/wordpress
+adda.io.conf:	Alias /blog /var/www/blogs/addaio_blog
+
+===============================================================
+
+/var/www/adda/src/wordpress    ---- adda_blog_new  
+/var/www/blogs/gatekeeper_blog  ---- gatekeeper_blog
+/var/www/blogs/addaio_blog      ---- addaio_blog
+/var/www/faq_adda_io           ---- faq_adda_io
+

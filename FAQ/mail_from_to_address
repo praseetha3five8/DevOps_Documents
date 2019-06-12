@@ -1,0 +1,29 @@
+Sending mail from server using telnet with from and to address
+--------------------------------------
+
+
+Trying ::1...
+Connected to localhost.
+Escape character is '^]'.
+220 server1.unixmen.local ESMTP Postfix
+ehlo localhost     ## Type this line ##
+250-server1.unixmen.local
+250-PIPELINING
+250-SIZE 10240000
+250-VRFY
+250-ETRN
+250-ENHANCEDSTATUSCODES
+250-8BITMIME
+250 DSN
+mail from:<sk>     ## Type this - mail sender address ##
+250 2.1.0 Ok
+rcpt to:<sk>     ## Type this - mail receiver address ##
+250 2.1.5 Ok
+data     ## Type this to input body of Email ##
+354 End data with <CR><LF>.<CR><LF>
+Welcome to unixmen mail server     ## Body of the Email ##
+.     ## Type dot (.) after composing your email ##
+250 2.0.0 Ok: queued as E2B522032F93
+quit     ## Type quit to exit from mail ##
+221 2.0.0 Bye
+Connection closed by foreign host.

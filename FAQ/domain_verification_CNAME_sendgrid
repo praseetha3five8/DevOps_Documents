@@ -1,0 +1,31 @@
+ISSUE: How to verify domain and get CNAME Record from sendgrid.
+
+
+RESOLVE:
+URL:
+https://sendgrid.com/docs/ui/account-and-settings/how-to-set-up-domain-authentication/
+To set up domain authentication:
+
+    1. In the SendGrid UI, select Settings > Sender Authentication.
+    2. In the domain authentication section, click Get Started.
+    3. Next, add in information about your DNS host, and indicate whether you also want to set up link branding. Click Next. For more information about link branding, check out What is link branding?.
+    4. Fill in the domain that you want to send from and add advanced settings as needed. Make sure that you only enter the name of your root domain. Do not include www or http://www in this field. Your domain needs to match the domain of your FROM address on the emails you are sending out. For example, if I am sending an email from example@sendgrid.com, I would set my domain authentication domain to be sendgrid.com. Click Next. For more information about advanced settings, see Advanced settings.
+    5. Next, you need to add all of the CNAME records on this screen to your DNS host. This process varies depending on your DNS host. For videos on how to add your CNAME to some popular DNS service providers, check out these videos. If you don't have access to modify your companies DNS records, you can also email a request to a co-worker. This email includes a direct link to the CNAME records. This link does expire. The recipient doesn't need login access to your SendGrid account.
+
+
+
+----------------------------------------------------------------------
+Once its verified.
+
+1. action_email.php >> under below function add.
+
+    function get_from_email_for_addaio($apt_id, $from)
+    {
+        if (is_pacific_adda($apt_id)) return "collections@pacificuae.com";
+        if (is_place_adda($apt_id)) return "customercare@place.ae";
+        if (is_prime_oam_adda($apt_id)) return "mycommunity@pamuae.com";
+        return $from;
+    }
+
+
+------------------------------------------------------------------------------------

@@ -1,0 +1,68 @@
+grep "07/Jun/2019:12" /var/log/apache2/access.log | awk {'print $10 $3'} | sort | uniq -c | sort -n -r | head -30
+
+
+ 2003 /modules/inc/base.php183.83.51.15
+    963 /iclock/cdata.aspx?SN=OIN7020057012001783&options=all&pushver=2.2.14&language=69122.169.43.145
+    850 /iclock/cdata.aspx?SN=OIN6110056102602462&options=all&pushver=2.2.14&language=69103.91.100.192
+    785 /iclock/cdata.aspx?SN=OIN6110056102602462&options=all&pushver=2.2.14&language=69103.91.100.240
+    732 /iclock/cdata.aspx?SN=BRR2181260053&options=all&pushver=2.2.14&language=69103.59.202.143
+    269 /modules/inc/base.php122.169.95.233
+    257 /modules/inc/base.php49.206.123.8
+    230 /modules/inc/base.php111.119.208.150
+    225 /modules/inc/base.php122.174.231.89
+    208 /modules/inc/base.php114.143.247.211
+    190 /modules/inc/base.php59.95.79.191
+    164 /modules/inc/base.php182.56.184.162
+    164 /modules/inc/base.php103.102.144.3
+    145 /iclock/cdata.aspx?SN=BJ2C183660222&options=all&pushver=2.2.14&language=69111.119.207.1
+    136 /modules/inc/base.php122.163.59.151
+    131 /iclock/cdata?SN=AF4C191260199&options=all&language=69&pushver=2.4.0122.166.131.245
+    129 /iclock/cdata?SN=AF4C191160243&options=all&language=69&pushver=2.4.049.205.222.124
+    127 /iclock/cdata.aspx?SN=BJ2C184561852&options=all&language=69&pushver=2.4.0171.76.110.201
+    103 /modules/inc/base.php122.172.177.84
+     97 /modules/inc/base.php122.172.46.250
+     96 /modules/inc/base.php122.172.176.47
+     90 /modules/inc/base.php49.36.1.113
+     88 /rumpletiltskin/rumple_command-center.php49.207.50.202
+     85 /modules/inc/month.php122.172.23.200
+     85 /adda2/index_load49.207.50.202
+     82 /modules/inc/month.php183.83.51.15
+     81 /modules/inc/base.php122.164.205.22
+     79 /iclock/getrequest.aspx?SN=OIN7030057031401747150.242.71.221
+     78 /api/index_load49.207.50.202
+     77 /modules/inc/month.php122.167.179.162
+
+
+===============================================================================================
+grep "07/Jun/2019:12" /var/log/apache2/access.log | awk {'print $10'} | sort | uniq -c | sort -n -r | head -30
+   6953 /modules/inc/base.php
+   6521 /adda2/index_load
+   4883 /api/getUnreadNotifications
+   4176 /api/index_load
+   4028 /gatekeeper/get_in_count
+   3221 /gatekeeper/getVisitors_ver2
+   2834 /adda2/updateAllPermissions_ver8
+   2617 /gatekeeper/regular_visitors
+   2487 /adda2/getAllNotificationsNew
+   2381 /gatekeeper/visitor_ver4
+   2266 /gatekeeper/getExpectedVisitorsSmart_ver2
+   1896 /adda2/getComments
+   1647 /iclock/cdata.aspx?SN=OIN6110056102602462&options=all&pushver=2.2.14&language=69
+   1588 /gatekeeper/getAtHomeNumbers
+   1579 /myadda/php/residents_data.php?pg=index
+   1545 /gatekeeper/attendance_ver4
+   1389 /api/getNotificationData
+   1279 /modules/inc/month.php
+   1208 /gatekeeper/getAllStaffStatus
+   1174 /adda2/updateAllPermissions_ver9
+   1138 /adda2/getUnreadNotifications
+    963 /iclock/cdata.aspx?SN=OIN7020057012001783&options=all&pushver=2.2.14&language=69
+    889 /myadda/php/residents_data.php?pg=dm.fetch_unread
+    732 /iclock/cdata.aspx?SN=BRR2181260053&options=all&pushver=2.2.14&language=69
+    670 /api/markAllNotificationsRead
+    658 /gatekeeper/getGifts
+    635 /myadda/forum-index.php
+    582 /myadda/%7B%7Battach.discussion_file_link%7D%7D
+    545 /gatekeeper/uploadFile
+    500 /myadda/php/residents_data.php?pg=myadda
+

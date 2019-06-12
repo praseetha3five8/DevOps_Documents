@@ -1,0 +1,10 @@
+https://docs.bitnami.com/google-templates/infrastructure/memcached/get-started/check-cluster-replication-status/
+
+
+
+
+For checking memcache connection.
+-------------------------
+
+telnet MEMCACHED_INSTANCE_ADDRESS 11211
+

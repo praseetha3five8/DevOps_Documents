@@ -1,0 +1,154 @@
+RFID_ROSSELAR_ABACUS_COMPLETE_DOCUMENT
+---------------------------------------
+
+1. ADDA>> Admin Portal >>Unit&USers >> Under Vehicle Details Need to Save.   (Code: ajax_admin_residents*  add,delete,update..etc)
+
+Model/VehicleNo/VehicleType/SlotNo/StickerNo/RFIDNo
+
+Will save in DB : bhaaraath.adda_parking_allotment & adda_flat_owner
+
+bhaaraath.adda_parking_allotment
+----------------------------------
+parking_slot_id	
+parking_slot_parking_id	
+parking_slot_apt_id	
+parking_slot_flat_id	
+parking_slot_owner_id	
+parking_slot_vehicle_no	
+parking_slot_sticker_no	
+parking_slot_vehicle_model	
+parking_slot_vehicle_type	
+parking_slot_rfid	
+parking_slot_file_name	
+parking_slot_from_date	
+parking_slot_to_date	
+parking_slot_allotted_by_id	
+parking_slot_status	
+parking_slot_comment	
+adda_parking_allotment_systimestamp
+
+bhaaraath.adda_flat_owner
+-------------------------
+flat_id	
+flat_apt_id	
+flat_block	
+flat_aptno	
+flat_primary_contact_id	flat_pets	
+flat_vehicle1_description	
+flat_vehicle2_description	
+flat_vehicle3_description	
+flat_vehicle4_description	
+flat_vehicle1_number	
+flat_vehicle2_number	
+flat_vehicle3_number	
+flat_vehicle4_number	
+flat_vehicle1_type	
+flat_vehicle2_type	
+flat_vehicle3_type	
+flat_vehicle4_type	
+flat_af_id	
+flat_payment_frequency	
+flat_vehicle1_sticker	
+flat_vehicle2_sticker	
+flat_vehicle3_sticker	
+flat_vehicle4_sticker	
+flat_due	
+flat_maintenance_fee	
+flat_intercom	
+flat_vehicle1_slot	
+flat_vehicle2_slot	
+flat_vehicle3_slot	
+flat_vehicle4_slot	
+flat_sq_ft	
+flat_isdirty	
+flat_after_date	
+flat_sq_ft2	
+flat_bill_name	
+flat_floor	
+flat_water_inlets	
+flat_bhk	
+flat_occupancy	
+flat_parking_slot1	
+flat_parking_slot2	
+flat_constant	
+flat_approved	
+flat_vehicle1_rfid	
+flat_vehicle2_rfid	
+flat_vehicle3_rfid	
+flat_vehicle4_rfid	
+flat_kyc_submitted	
+flat_invoice_comment	
+flat_excess	
+flat_parking_slot3	
+flat_parking_slot4	
+flat_primary_number	
+flat_secondary_number	
+flat_parking_slot5	
+flat_parking_slot6	
+flat_parking_slot7	
+flat_parking_slot8	
+flat_gstin	
+adda_flat_owner_systimestamp	
+flat_settings
+
+========================================================================================
+2. Abaus/Rossellar calling 2 APIs.
+
+i). Rossalare Card Reader (https://apartmentadda.com/external/rosslare_pingback.php)
+will pass the details.
+empcode(rfid)/terminalid/sitecode/iostatus(IN/OUT)/rossalar(SR_NO)
+
+will save the tables.
+---------------------
+DB:-shahansha
+Table:-connect_rosslare
+rosslare_id	
+rosslare_rfid	
+rosslare_terminal_id	
+rosslare_site_code	
+rosslare_inout_status	
+rosslare_inout_time	
+rosslare_srno
+
+
+ii.) For Biometric Attendance Reader (https://apartmentadda.com/external/external_biometric.php?SN=<DEVICE SN NO>&table=<ATTLOG>&Stamp=<int>&authkey=<authkey>)
+attendance raw data: separated by tab.
+authkey=3116a20f0be0e5f2d6f2616ba6444052
+table=OPERLOG/ATTLOG
+SN=device sn no
+Stamp=numeric biometric device unique number.
+
+
+this call will redirect to cdata.php and save data in bhaaraath.adda_raw_data taable.
+
+========================================================================================
+
+Report Flow.
+-----------
+ADDA>>Admin>> Adda Gatekeeper >> Report >> Vehicle RFID Tag Swipe Log
+
+
+report is generating from "attendance_manager_vehicle_history_report.php" .
+1. from adda_rosslare_devices table get the "rosslare_device_site_code" for correspondng seesion_apt_id
+Note: we will create a entry in adda_rosslare_devices while adding a new ADDA into rosslar 
+
+2. using the rosslare_device_site_code  get the rfid from the "connect_rosslare" table 
+Note: API rosslare_pingback.php which calling by abacu will save all the data to this table.
+this table will print only the RFID;Terminal;In Out Status;In Out Time
+
+3. To print the remaining data like (Block;Unit;Vehicle No;Vehicle Model)
+The RFID which got from the step 2 will match with the table bhaaraath.adda_parking_allotment and bhaaraath.adda_flat_owner
+with corresponing apt_id.
+NOTE: bhaaraath.adda_parking_allotment and bhaaraath.adda_flat_owner table will update while adding the data to ADDA admin portal.
+ADDA>>Admin>units&users>ApprovedUsers>>Flat>>Vehicle.
+
+==============================================================================================
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,30 @@
+Thanishka server.
+-------------
+/var/www/gatekeeper_crimes_blog/wp-includes
+/var/www/gatekeeper_blog/wp-includes
+/var/www/aimm/wp-includes
+/var/www/adda/src/wordpress/wp-includes
+/var/www/faq/wp-includes
+
+==================================================
+
+To get wordpress version
+>>grep wp_version wp-includes/version.php
+
+================================================
+
+INSTALL
+https://www.tecmint.com/install-wordpress-on-ubuntu-16-04-with-lamp/
+
+================================================
+
+UPGRADE
+https://websiteforstudents.com/upgrade-wordpress-via-ssh-on-ubuntu-16-04-lts/
+https://codex.wordpress.org/Upgrading_WordPress_Extended
+
+================================================
+
+PLUGINS
+https://wordpress.org/plugins/
+
+================================================

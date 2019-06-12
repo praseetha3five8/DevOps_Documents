@@ -1,0 +1,12 @@
+For testing SMS whitelist templates
+-----------------------------------
+
+*URL for checking API: http://bulkpush.mytoday.com/BulkSms/
+  1. FeedID   : 351363
+  2. Mobiles Numbers : any test mobile number
+  3. Message as same template
+eg:
+Panic Alert from Flat A-002, SEW Test #123#1#1#1
+neBeHNysNHu
+  4. Username:9987669994
+  5. Password : ptwjm

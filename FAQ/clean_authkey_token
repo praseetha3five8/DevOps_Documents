@@ -1,0 +1,19 @@
+549844 - manjunatha@3five8.com
+826941 - mynewadda.36@gmail.com
+826937 - mynewadda.35@gmail.com
+969219 - mynewadda.65@gmail.com
+726980 - notifiadda1@gmail.com
+
+delete from adda_notification.owner_device_token where od_owner_id='549844';
+delete from gatekeeper.adda_app_ownerdetail where app_ownerdetail_owner_id='549844';
+
+
+DELETE FROM gatekeeper.adda_app_ownerdetail WHERE app_ownerdetail_cookie = '{$auth_key}' and app_ownerdetail_owner_id = '{$owner_id}'";
+
+
+
+
+Deleting the token from manually --- normally logout will do (action_myadda.php) .
+------------------------------------------------------------------
+delete from adda_notification.owner_device_token where od_owner_id='726980';
+delete from gatekeeper.adda_app_ownerdetail where app_ownerdetail_owner_id='726980';

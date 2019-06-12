@@ -1,0 +1,22 @@
+Apache Increase MaxClient
+
+
+URL: https://oxpedia.org/wiki/index.php?title=Tune_apache2_for_more_concurrent_connections
+To check which mpm  --- apachectl -V | grep -i mpm
+vi /etc/apache2/mods-available/mpm_prefork.conf
+ps -aux | grep "/usr/sbin/apache2 -k start" | grep -v grep |wc -l	
+
+Reff URL:
+https://oxpedia.org/wiki/index.php?title=Tune_apache2_for_more_concurrent_connections
+
+
+===========================================
+Process which Taking more CPU.
+22531 -- @15:09 -- 14/02/2019 (99%)
+23172 -- @15:09 -- 14/02/2019 (99%)
+23268 -- @15:13 
+23102
+22795
+22407
+
+=======================

@@ -1,0 +1,12 @@
+Disable PHP5 module on Apache:
+
+sudo a2dismod php5
+
+Now enable PHP7:
+
+sudo a2enmod php7.1
+
+To reflect changes Apache restart is required:
+
+sudo systemctl restart apache2
+

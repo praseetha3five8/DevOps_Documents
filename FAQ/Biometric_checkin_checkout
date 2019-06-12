@@ -1,0 +1,42 @@
+1. select * from bhaaraath.adda_biometric_attendence_raw_data where (biometric_attendence_device_sn='OIN6090056090600891') and (biometric_attendence_apt_staff_id='722087') and biometric_attendence_checkin_time>'2019-01-01 00:00:00' ;
+
+While deactivation time -- biometric_attendence_param1=25
+and activation time     -- biometric_attendence_param1=0
+
+select * from bhaaraath.adda_owner_biometric_devices limit 10;
+
+----------------
+select * from bhaaraath.adda_biometric_devices where biometric_device_sn="AEWU182560099" limit 3; 
+staff devices will add in above table
+--------------
+
+
+2. Biometric Device should list in bhaaraath.adda_owner_biometric_devices (then only checkin checkout work)
+
+For adding a device into biometric checkin checkout:
+1. insert into bhaaraath.adda_owner_biometric_devices ('biometric_device_sn','biometric_device_apt_id') values('BJ2C181861464','108233');
+INSERT INTO `adda_owner_biometric_devices` (`biometric_device_sn`,`biometric_device_apt_id`)VALUES ('0IN7060057062001521','108433');   
+
+For removing a device from biometric checkin checkout:
+2. delete from bhaaraath.adda_owner_biometric_devices where biometric_device_sn='OIN7060057062001521' and biometric_device_id='7' limit 1;
+
+
+
+select * from bhaaraath.adda_biometric_attendence_raw_data where (biometric_attendence_device_sn='BJ2C183760307') and (biometric_attendence_apt_staff_id='750853') and biometric_attendence_checkin_time>'2019-01-01 00:00:00' ;
+
+
+select * from bhaaraath.adda_biometric_attendence_raw_data where (biometric_attendence_device_sn='BJ2C184561105') and (biometric_attendence_apt_staff_id='3@1603@3') and biometric_attendence_checkin_time>'2019-04-09 00:00:00' ;
+
+
+BJ2C184561105
+
+INSERT INTO `adda_owner_biometric_devices` (`biometric_device_sn`,`biometric_device_apt_id`)VALUES ('BJ2C184561105','108433');   
+
+
+
+INSERT INTO `adda_owner_biometric_devices` (`biometric_device_sn`,`biometric_device_apt_id`)VALUES ('BJ2C184561105','108433');   
+select * from bhaaraath.adda_owner_biometric_devices limit 10;
+
+
+
+

@@ -1,0 +1,12 @@
+redis-QUEUES
+-----------
+Reff: https://redis.io/commands/RPOPLPUSH
+
+get the queue name from server.
+
+1) to get the length of queue --- LLEN queue_name (eg: LLEN generic_attachment_mail_queue)
+2) to get the value of the queue --- LRANGE queue_name start_range stop_range (eg: LRANGE yahoo_attachment_mail_queue 1 34)
+3) to fetch or clear the data --- LPOP queue_name (eg: LPOP yahoo_attachment_mail_queue)
+4) set a value in queue --- RPUSH mylist "one"
+
+
